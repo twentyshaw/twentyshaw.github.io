@@ -72,7 +72,7 @@ div {
       #header .site-name #logo span, #header .site-name #logo:hover {
         color: #777; }
     #header .site-name .description {
-      margin: .2em 0 0;
+      margin: 1em 0 0;
       color: #999; }
   #header #nav-menu {
     margin: 10px 0 -1px;
@@ -284,11 +284,11 @@ div {
     .post .post-content .tagcloud {
       margin: 0 0 30px 0; }
       .post .post-content .tagcloud a {
-        padding: 0px 5px;
-        margin: 3px;
+        padding: 2px 14px;
+        margin: 0 10px 10px 0;
         display: inline-block;
         border: 1px solid #808080;
-        border-radius: 999em;
+        border-radius: 6px;
         color: #aaa; }
         .post .post-content .tagcloud a:hover {
           color: #fff;
@@ -349,7 +349,7 @@ div {
     padding: 5px 5px; }
 
 #footer {
-  padding: .8em 0 3.6em;
+  padding: .8em 0;
   margin-top: 1em;
   line-height: 2.5;
   color: #6E7173;
@@ -764,8 +764,7 @@ pre {
     content: "\f101";
     padding-left: 0.3em; }
   .readmore a:hover {
-    background: #F8F8F8;
-    border-bottom-color: #D26911; }
+    background: #F8F8F8; }
 
 /* syntax highlight*/
 figure.highlight,
