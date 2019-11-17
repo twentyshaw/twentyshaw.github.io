@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://twentyshaw.github.io/"/>
-  <updated>2019-11-14T06:34:58.940Z</updated>
+  <updated>2019-11-17T02:12:31.644Z</updated>
   <id>https://twentyshaw.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTP协议学习笔记（3）</title>
+    <link href="https://twentyshaw.github.io/2019/11/17/HTTP%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%883%EF%BC%89/"/>
+    <id>https://twentyshaw.github.io/2019/11/17/HTTP协议学习笔记（3）/</id>
+    <published>2019-11-17T02:07:04.000Z</published>
+    <updated>2019-11-17T02:12:31.644Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="三次握手与四次挥手"><a href="#三次握手与四次挥手" class="headerlink" title="三次握手与四次挥手"></a>三次握手与四次挥手</h3><h4 id="1-三次握手"><a href="#1-三次握手" class="headerlink" title="1. 三次握手"></a>1. 三次握手</h4><p>还是要祭出那张熟悉的图</p><a id="more"></a><p><img src="https://upload-images.jianshu.io/upload_images/5426662-d94f3226a689847c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片来自互联网"></p><ul><li><strong>第一次握手</strong>：首先由客户端主机主动发起建立连接的请求<br>该请求为一个TCP报文。该报文段首部中的SYN=1，ACK=0。由于SYN=1的报文段不能携带数据但会消耗一个序列号（由自身主机随机生成），所以假设它产生了一个值为x的序列号→seq=x。并且，ACK=0的报文段没有确认号（ack）。所以第一次握手的TCP报文首部为图示的：<br>SYN=1，seq=x</li><li><strong>第二次握手</strong>：服务端主机同意建立连接<br>服务端会响应一个TCP报文。该报文段首部SYN=1，ACK=1。<strong>发起连接和同意建立连接的SYN都为1。</strong>因为SYN=1，所以该报文段也会带上一个序列号，这个序列号也是由服务端自己随机生成的一个值。如图，假设它为y→seq=y。但是，由于本次报文中ACK=1，所以他有一个确认号ack，为服务端从对方主机（客户端）接收到的数据序列号（第一次握手发过来的seq=x）加上1，所以他的确认号为：<strong>ack=x+1</strong>。综上，第二次握手TCP报文首部为：<br>SYN=1，ACK=1，seq=y，ack=x+1</li><li><strong>第三次握手</strong>：客户端主机表示收到了服务端同意的消息<br>客户端收到服务端响应的消息后，它会再发一个TCP报文，来告诉服务端自己知道了。这个报文首部SYN=0，ACK=1。<strong>由于本次握手发送的报文SYN=0，所以报文段已经可以携带数据了</strong>。它的seq为自己在第一次握手随机创建的序列号（x）加1→seq=x+1。表示自己这次发送的TCP报文中的数据是接着上一次给对方发的数据包的（虽然上一次没有数据包）。然后，它的ack为服务端响应的seq的值加1→ack=y+1。表示你上次发的y我已经收到了，你可以给我发后面的数据（y+1）了。所以，本次握手的TCP报文为：<br>ACK=1，seq=x+1，ack=y+1</li></ul><p><strong>至此，完成了建立TCP连接的三次握手。从上面的过程中，我得出一个结论：序列号（seq）是用来标识自己本次发送的数据，确认号（ack）是用来提醒对方自己要接受的数据</strong></p><hr><h4 id="2-TCP连接的释放——四次挥手"><a href="#2-TCP连接的释放——四次挥手" class="headerlink" title="2. TCP连接的释放——四次挥手"></a>2. TCP连接的释放——四次挥手</h4><p>看看过程：<br><img src="https://upload-images.jianshu.io/upload_images/5426662-26b986db7a0be705.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片来自互联网"></p><p>数据传输结束后，通信双方可以关闭连接，并且停止发送数据。</p><ul><li><strong>第一次挥手</strong>：客户端主机主动请求关闭连接。<br>它会发送一个释放连接的报文段并且不携带任何数据。该报文段的FIN=1，seq为前面传输的数据序列号加1，假设他为u→seq=u。<strong>TCP规定，在FIN=1的报文段，即使没有携带数据也要消耗一个序列号。</strong>客户端发出这个报文以后，就进入终止等待1（FIN-WAIT-1）的阶段，等待服务端的响应。</li><li><strong>第二次挥手</strong>：服务端向客户端确认：我要开始释放连接了哦<br>服务端收到客户端传来的释放连接的报文段以后，会先返回一个确认的报文段。该报文段ACK=1，确认号为客户端传来的报文段的序列号加1→ack=u+1。他的序列号为自己前面发送的最后的数据的序列号加1 ，假设它为v→seq=v。<br>这时客户端收到这个确认报文以后会进入终止等待2（FIN-WAIT-2）的阶段，该阶段客户端已经不能再向服务端发送数据了，但是它还可以接收服务端发送过来的数据。</li><li><strong>第三次挥手</strong>：如果服务端已经没有要发给客户端的数据了，他会通知应用进程释放连接。<br>服务端发送一个报文段，FIN=1，ACK=1，确认号仍然是第二次挥手报文段中的确认号ack=u+1。序列号为第二次挥手时，最后传给客户端的数据的序列号加1，假设它为w→seq=w。</li><li><strong>第四次挥手</strong>：客户端收到服务端的确认报文以后，再次与服务端确认，告诉他自己会关闭连接。<br>客户端发送一个确认报文段，ACK=1，确认号为第三次握手中服务端传过来的序列号加1→ack=w+1。它的序列号为自己前一次（第一次握手时）发送的报文序列号加1→seq=u+1。<br>发出该报文后，客户端并不会马上关闭连接，它会进入TIME-WAIT状态。这是一个等待时间，可以自己设定。然而服务端收到报文以后会先马上进入CLOSED状态。客户端只有过了等待时间以后才进入CLOSED状态。二者都进入CLOSED状态后，连接就完全释放了</li></ul><p>至此，四次挥手完成，连接释放。<br>可以看到FIN=1这个字段，只会出现在客户端或服务端提醒对方要关闭连接的时候（第一次握手和第三次握手）。客户端或服务端在收到对方的关闭连接的报文后，都会与对方再次确认。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;三次握手与四次挥手&quot;&gt;&lt;a href=&quot;#三次握手与四次挥手&quot; class=&quot;headerlink&quot; title=&quot;三次握手与四次挥手&quot;&gt;&lt;/a&gt;三次握手与四次挥手&lt;/h3&gt;&lt;h4 id=&quot;1-三次握手&quot;&gt;&lt;a href=&quot;#1-三次握手&quot; class=&quot;headerlink&quot; title=&quot;1. 三次握手&quot;&gt;&lt;/a&gt;1. 三次握手&lt;/h4&gt;&lt;p&gt;还是要祭出那张熟悉的图&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://twentyshaw.github.io/categories/JavaScript/"/>
+    
+      <category term="计算机基础" scheme="https://twentyshaw.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="JS" scheme="https://twentyshaw.github.io/tags/JS/"/>
+    
+      <category term="HTTP" scheme="https://twentyshaw.github.io/tags/HTTP/"/>
+    
+      <category term="计算机基础" scheme="https://twentyshaw.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>HTTP协议学习笔记（2）</title>
