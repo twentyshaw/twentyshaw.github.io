@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://twentyshaw.github.io/"/>
-  <updated>2019-11-18T01:25:26.387Z</updated>
+  <updated>2019-11-18T06:02:25.127Z</updated>
   <id>https://twentyshaw.github.io/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS代码题6</title>
+    <link href="https://twentyshaw.github.io/2019/11/18/JS%E4%BB%A3%E7%A0%81%E9%A2%986/"/>
+    <id>https://twentyshaw.github.io/2019/11/18/JS代码题6/</id>
+    <published>2019-11-18T05:59:04.000Z</published>
+    <updated>2019-11-18T06:02:25.127Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h3><h4 id="请使用最基本的遍历来实现判断字符串-a-是否被包含在字符串-b-中，并返回第一次出现的位置（找不到返回-1）。"><a href="#请使用最基本的遍历来实现判断字符串-a-是否被包含在字符串-b-中，并返回第一次出现的位置（找不到返回-1）。" class="headerlink" title="请使用最基本的遍历来实现判断字符串 a 是否被包含在字符串 b 中，并返回第一次出现的位置（找不到返回 -1）。"></a>请使用最基本的遍历来实现判断字符串 a 是否被包含在字符串 b 中，并返回第一次出现的位置（找不到返回 -1）。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=&apos;34&apos;;b=&apos;1234567&apos;; // 返回 2</span><br><span class="line">a=&apos;35&apos;;b=&apos;1234567&apos;; // 返回 -1</span><br><span class="line">a=&apos;355&apos;;b=&apos;12354355&apos;; // 返回 5</span><br><span class="line">isContain(a,b);</span><br></pre></td></tr></table></figure><p>题目要求实现的功能其实就是String的indexOf()方法，所以：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function isContain(strA,strB)&#123;</span><br><span class="line">return strB.indexOf(strA)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>但是题目要求<strong>“最基本的遍历来实现”</strong>，所以不能使用indexOf()方法。用遍历来实现的话:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function isContain(strA,strB)&#123;</span><br><span class="line">var arrA = strA.split(&apos;&apos;)</span><br><span class="line">var arrB = strB.split(&apos;&apos;)</span><br><span class="line">var flag,temp</span><br><span class="line">for(var j in arrB)&#123;</span><br><span class="line">if (arrA[0] === arrB[j]) &#123;</span><br><span class="line">temp = parseInt(j) //注意这里的j是一个字符串。。它居然是个字符串</span><br><span class="line">flag = true</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">var index = temp + 1</span><br><span class="line">for (var i = 1; i &lt; arrA.length; i++)&#123;</span><br><span class="line">if (arrA[i] !== arrB[index++]) &#123;</span><br><span class="line">flag = false</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">if (flag) &#123;</span><br><span class="line">return temp</span><br><span class="line">&#125;else&#123;</span><br><span class="line">return -1</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>自己在写这个代码的过程中犯了一个错误：</p><ul><li><strong>for(in)循环索引是字符串而不是整数。</strong>并且我不应该用for in循环来遍历一个数组。<br>所以代码最好改写成：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function isContain(strA,strB)&#123;</span><br><span class="line">var arrA = strA.split(&apos;&apos;)</span><br><span class="line">var arrB = strB.split(&apos;&apos;)</span><br><span class="line">var flag,temp</span><br><span class="line">for (var k = 0; k &lt; arrB.length; k++) &#123;</span><br><span class="line">if (arrB[k] === arrA[0]) &#123;</span><br><span class="line">temp = j</span><br><span class="line">flag = true</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">var index = temp + 1</span><br><span class="line">for (var i = 1; i &lt; arrA.length; i++)&#123;</span><br><span class="line">if (arrA[i] !== arrB[index++]) &#123;</span><br><span class="line">flag = false</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">if (flag) &#123;</span><br><span class="line">return temp</span><br><span class="line">&#125;else&#123;</span><br><span class="line">return -1</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>然后还有几个要注意的点：</li><li>用temp来记录匹配的起始位置</li><li>用flag来判断输出</li><li>最开始我想比较数组arrA和数组arrB的时候一直找不到好的方法。我试过外部遍历arrA然后在内部遍历arrB但是出错了。后来我发现我并不需要遍历arrB（我不需要拿到它的所有项目，也不需要它的length），我只要将arrA中的每一项与arrB的项依次对比就可以了。所以使用了arrB[index++]。（注意index的初始值为temp+1）</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;字符串查找&quot;&gt;&lt;a href=&quot;#字符串查找&quot; class=&quot;headerlink&quot; title=&quot;字符串查找&quot;&gt;&lt;/a&gt;字符串查找&lt;/h3&gt;&lt;h4 id=&quot;请使用最基本的遍历来实现判断字符串-a-是否被包含在字符串-b-中，并返回第一次出现的位置（找不到返回-1
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://twentyshaw.github.io/categories/JavaScript/"/>
+    
+      <category term="刷题" scheme="https://twentyshaw.github.io/categories/%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="JS" scheme="https://twentyshaw.github.io/tags/JS/"/>
+    
+      <category term="代码题" scheme="https://twentyshaw.github.io/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/"/>
+    
+      <category term="数组" scheme="https://twentyshaw.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="字符串" scheme="https://twentyshaw.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>JS代码题5</title>
