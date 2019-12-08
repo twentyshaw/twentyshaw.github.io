@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://twentyshaw.github.io/"/>
-  <updated>2019-11-28T02:04:47.333Z</updated>
+  <updated>2019-12-08T05:09:33.062Z</updated>
   <id>https://twentyshaw.github.io/</id>
   
   <author>
@@ -15,6 +15,151 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS代码题14</title>
+    <link href="https://twentyshaw.github.io/2019/12/08/JS%E4%BB%A3%E7%A0%81%E9%A2%9814/"/>
+    <id>https://twentyshaw.github.io/2019/12/08/JS代码题14/</id>
+    <published>2019-12-08T05:03:18.000Z</published>
+    <updated>2019-12-08T05:09:33.062Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="实现类似getElementsByClassName-的功能"><a href="#实现类似getElementsByClassName-的功能" class="headerlink" title="实现类似getElementsByClassName 的功能"></a>实现类似getElementsByClassName 的功能</h3><h4 id="自己实现一个函数，查找某个DOM节点下面的包含某个class的所有DOM节点。不允许使用原生提供的getElementsByClassName，querySelectorAll等原生提供DOM查找函数。"><a href="#自己实现一个函数，查找某个DOM节点下面的包含某个class的所有DOM节点。不允许使用原生提供的getElementsByClassName，querySelectorAll等原生提供DOM查找函数。" class="headerlink" title="自己实现一个函数，查找某个DOM节点下面的包含某个class的所有DOM节点。不允许使用原生提供的getElementsByClassName，querySelectorAll等原生提供DOM查找函数。"></a>自己实现一个函数，查找某个DOM节点下面的包含某个class的所有DOM节点。不允许使用原生提供的getElementsByClassName，querySelectorAll等原生提供DOM查找函数。</h4><a id="more"></a><p>代码如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function findClass(node,name)&#123;</span><br><span class="line">var nodes</span><br><span class="line">if(node)&#123;</span><br><span class="line">nodes = node.children</span><br><span class="line">&#125;else&#123; //没有传节点的情况下，就搜索整篇文档内的元素</span><br><span class="line">nodes = document.getElementsByTagName(&apos;*&apos;) </span><br><span class="line">&#125;</span><br><span class="line">var classes</span><br><span class="line">var result = []</span><br><span class="line">for (var i = 0; i &lt; nodes.length; i++) &#123;</span><br><span class="line">classes = nodes[i].className.split(&apos; &apos;) //一个元素可能拥有多个classname，被空格隔开</span><br><span class="line">if (classes.indexOf(name) !== -1) &#123;</span><br><span class="line">result.push(nodes[i])</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>还是用到了原生查找函数：<code>document.getElementsByTagName</code>，不知道有没有不能这个函数能获取所有元素节点的方法</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;实现类似getElementsByClassName-的功能&quot;&gt;&lt;a href=&quot;#实现类似getElementsByClassName-的功能&quot; class=&quot;headerlink&quot; title=&quot;实现类似getElementsByClassName 的功能&quot;&gt;&lt;/a&gt;实现类似getElementsByClassName 的功能&lt;/h3&gt;&lt;h4 id=&quot;自己实现一个函数，查找某个DOM节点下面的包含某个class的所有DOM节点。不允许使用原生提供的getElementsByClassName，querySelectorAll等原生提供DOM查找函数。&quot;&gt;&lt;a href=&quot;#自己实现一个函数，查找某个DOM节点下面的包含某个class的所有DOM节点。不允许使用原生提供的getElementsByClassName，querySelectorAll等原生提供DOM查找函数。&quot; class=&quot;headerlink&quot; title=&quot;自己实现一个函数，查找某个DOM节点下面的包含某个class的所有DOM节点。不允许使用原生提供的getElementsByClassName，querySelectorAll等原生提供DOM查找函数。&quot;&gt;&lt;/a&gt;自己实现一个函数，查找某个DOM节点下面的包含某个class的所有DOM节点。不允许使用原生提供的getElementsByClassName，querySelectorAll等原生提供DOM查找函数。&lt;/h4&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://twentyshaw.github.io/categories/JavaScript/"/>
+    
+      <category term="刷题" scheme="https://twentyshaw.github.io/categories/%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="JS" scheme="https://twentyshaw.github.io/tags/JS/"/>
+    
+      <category term="代码题" scheme="https://twentyshaw.github.io/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/"/>
+    
+      <category term="DOM" scheme="https://twentyshaw.github.io/tags/DOM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS代码题13</title>
+    <link href="https://twentyshaw.github.io/2019/12/08/JS%E4%BB%A3%E7%A0%81%E9%A2%9813/"/>
+    <id>https://twentyshaw.github.io/2019/12/08/JS代码题13/</id>
+    <published>2019-12-08T05:03:02.000Z</published>
+    <updated>2019-12-08T05:08:56.711Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="随机生成指定长度的字符串"><a href="#随机生成指定长度的字符串" class="headerlink" title="随机生成指定长度的字符串"></a>随机生成指定长度的字符串</h3><h4 id="实现一个算法，随机生成指制定长度的字符串。"><a href="#实现一个算法，随机生成指制定长度的字符串。" class="headerlink" title="实现一个算法，随机生成指制定长度的字符串。"></a>实现一个算法，随机生成指制定长度的字符串。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">比如给定 长度 8  输出 4ldkfg9j</span><br></pre></td></tr></table></figure><a id="more"></a><p>实现：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function str(n)&#123;</span><br><span class="line">var str = &quot;&quot;</span><br><span class="line">var base = &quot;AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz123456789&quot;</span><br><span class="line">    //var i = Math.floor(Math.random()*Math.pow(10,n))</span><br><span class="line">    //这种方法只能取到0-9位的数字 pass</span><br><span class="line">    for(let i = 0; i&lt;n; i++)&#123;</span><br><span class="line">      var index = Math.floor(Math.random()*base.length) </span><br><span class="line">      //因为Math.random()产生的数小于1，</span><br><span class="line">      //所以它乘以base.length的结果在base的范围以内，并且可以取到所有字母</span><br><span class="line">      str = str + base.charAt(index)</span><br><span class="line">    &#125;</span><br><span class="line">    return str</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>base是手写的，有什么好的生成方法吗?</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;随机生成指定长度的字符串&quot;&gt;&lt;a href=&quot;#随机生成指定长度的字符串&quot; class=&quot;headerlink&quot; title=&quot;随机生成指定长度的字符串&quot;&gt;&lt;/a&gt;随机生成指定长度的字符串&lt;/h3&gt;&lt;h4 id=&quot;实现一个算法，随机生成指制定长度的字符串。&quot;&gt;&lt;a href=&quot;#实现一个算法，随机生成指制定长度的字符串。&quot; class=&quot;headerlink&quot; title=&quot;实现一个算法，随机生成指制定长度的字符串。&quot;&gt;&lt;/a&gt;实现一个算法，随机生成指制定长度的字符串。&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;比如给定 长度 8  输出 4ldkfg9j&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://twentyshaw.github.io/categories/JavaScript/"/>
+    
+      <category term="刷题" scheme="https://twentyshaw.github.io/categories/%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="JS" scheme="https://twentyshaw.github.io/tags/JS/"/>
+    
+      <category term="代码题" scheme="https://twentyshaw.github.io/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/"/>
+    
+      <category term="字符串" scheme="https://twentyshaw.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS代码题12(其实是数学题)</title>
+    <link href="https://twentyshaw.github.io/2019/12/06/JS%E4%BB%A3%E7%A0%81%E9%A2%9812/"/>
+    <id>https://twentyshaw.github.io/2019/12/06/JS代码题12/</id>
+    <published>2019-12-06T01:14:02.000Z</published>
+    <updated>2019-12-06T01:18:02.314Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="不借助临时变量，进行两个整数的交换"><a href="#不借助临时变量，进行两个整数的交换" class="headerlink" title="不借助临时变量，进行两个整数的交换"></a>不借助临时变量，进行两个整数的交换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入 a = 2, b = 4 输出 a = 4, b =2</span><br></pre></td></tr></table></figure><a id="more"></a><p>就是数学学的括号运算的思想：a=a+(b-a)<br>代码如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function swap(a,b)&#123;</span><br><span class="line">b = b - a</span><br><span class="line">a = a + b</span><br><span class="line">b = a - b</span><br><span class="line">return [a,b] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;不借助临时变量，进行两个整数的交换&quot;&gt;&lt;a href=&quot;#不借助临时变量，进行两个整数的交换&quot; class=&quot;headerlink&quot; title=&quot;不借助临时变量，进行两个整数的交换&quot;&gt;&lt;/a&gt;不借助临时变量，进行两个整数的交换&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入 a = 2, b = 4 输出 a = 4, b =2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://twentyshaw.github.io/categories/JavaScript/"/>
+    
+      <category term="刷题" scheme="https://twentyshaw.github.io/categories/%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="JS" scheme="https://twentyshaw.github.io/tags/JS/"/>
+    
+      <category term="代码题" scheme="https://twentyshaw.github.io/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS代码题11</title>
+    <link href="https://twentyshaw.github.io/2019/12/01/JS%E4%BB%A3%E7%A0%81%E9%A2%9811/"/>
+    <id>https://twentyshaw.github.io/2019/12/01/JS代码题11/</id>
+    <published>2019-12-01T05:02:40.000Z</published>
+    <updated>2019-12-08T05:07:55.976Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="统计一个字符串出现最多的字母"><a href="#统计一个字符串出现最多的字母" class="headerlink" title="统计一个字符串出现最多的字母"></a>统计一个字符串出现最多的字母</h3><h4 id="给出一段英文连续的英文字符窜，找出重复出现次数最多的字母"><a href="#给出一段英文连续的英文字符窜，找出重复出现次数最多的字母" class="headerlink" title="给出一段英文连续的英文字符窜，找出重复出现次数最多的字母"></a>给出一段英文连续的英文字符窜，找出重复出现次数最多的字母</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入 ： afjghdfraaaasdenas </span><br><span class="line"> </span><br><span class="line">输出 ： a</span><br></pre></td></tr></table></figure><a id="more"></a><p>代码如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function findMaxDuplicateChar(str)&#123;</span><br><span class="line">var arr = str.split(&apos;&apos;)</span><br><span class="line">var holder = &#123;&#125;</span><br><span class="line">for (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">if(holder.hasOwnProperty(arr[i]))&#123;</span><br><span class="line">holder[arr[i]]++</span><br><span class="line">&#125;else&#123;</span><br><span class="line">holder[arr[i]] = 1</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">var maxChar = &quot;&quot;</span><br><span class="line">var maxDup = 1</span><br><span class="line">for(var j in holder)&#123;</span><br><span class="line">if (holder[j] &gt; maxDup) &#123;</span><br><span class="line">maxChar = j</span><br><span class="line">maxDup = holder[j]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return maxChar</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;统计一个字符串出现最多的字母&quot;&gt;&lt;a href=&quot;#统计一个字符串出现最多的字母&quot; class=&quot;headerlink&quot; title=&quot;统计一个字符串出现最多的字母&quot;&gt;&lt;/a&gt;统计一个字符串出现最多的字母&lt;/h3&gt;&lt;h4 id=&quot;给出一段英文连续的英文字符窜，找出重复出现次数最多的字母&quot;&gt;&lt;a href=&quot;#给出一段英文连续的英文字符窜，找出重复出现次数最多的字母&quot; class=&quot;headerlink&quot; title=&quot;给出一段英文连续的英文字符窜，找出重复出现次数最多的字母&quot;&gt;&lt;/a&gt;给出一段英文连续的英文字符窜，找出重复出现次数最多的字母&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;输入 ： afjghdfraaaasdenas &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;输出 ： a&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://twentyshaw.github.io/categories/JavaScript/"/>
+    
+      <category term="刷题" scheme="https://twentyshaw.github.io/categories/%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="JS" scheme="https://twentyshaw.github.io/tags/JS/"/>
+    
+      <category term="代码题" scheme="https://twentyshaw.github.io/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/"/>
+    
+      <category term="数组" scheme="https://twentyshaw.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+      <category term="字符串" scheme="https://twentyshaw.github.io/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS代码题10</title>
+    <link href="https://twentyshaw.github.io/2019/12/01/JS%E4%BB%A3%E7%A0%81%E9%A2%9810/"/>
+    <id>https://twentyshaw.github.io/2019/12/01/JS代码题10/</id>
+    <published>2019-12-01T05:02:23.000Z</published>
+    <updated>2019-12-08T05:06:21.779Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><a id="more"></a><h4 id="1-简易版"><a href="#1-简易版" class="headerlink" title="1. 简易版"></a>1. 简易版</h4><p><strong>不考虑引用类型</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function uniq(arr) &#123;</span><br><span class="line">    var myarr = []</span><br><span class="line">    var flag = true</span><br><span class="line">    for (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">      if (myarr.indexOf(arr[i]) === -1) &#123;</span><br><span class="line">        if (arr[i] !== arr[i]) &#123; //判断该元素是否为NaN，因为indexOf(NaN)会返回-1</span><br><span class="line">          if (flag) &#123;</span><br><span class="line">            myarr.push(arr[i])</span><br><span class="line">            flag = false</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">          myarr.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return myarr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="2-复杂版"><a href="#2-复杂版" class="headerlink" title="2. 复杂版"></a>2. 复杂版</h4><p><strong>当数组元素为引用类型的时候，不能用indexOf()来判断。因为他总是会返回-1</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">function uniq(arr) &#123;</span><br><span class="line">    var flag = true</span><br><span class="line">    var myArr = []</span><br><span class="line">    var myObj = []</span><br><span class="line">    for(let i=0;i&lt;arr.length; i++)&#123;</span><br><span class="line">    if (arr[i] !== arr[i]) &#123;</span><br><span class="line">    if (!flag) &#123;</span><br><span class="line">    arr.splice(i,1)</span><br><span class="line">    i-- </span><br><span class="line">    &#125;else&#123;</span><br><span class="line">    flag = false</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;else if(Array.isArray(arr[i]))&#123; </span><br><span class="line">    myArr.push(arr[i])</span><br><span class="line">    if (myArr.length&gt;1) &#123;</span><br><span class="line">    for (let j = 0; j &lt; myArr.length; j++) &#123;</span><br><span class="line">    for (let m = myArr.length-1; m &gt; j ; m--) &#123;</span><br><span class="line">    var arrResult = eqArr(myArr[j],myArr[m])</span><br><span class="line">    if (arrResult) &#123;</span><br><span class="line">myArr.splice(m,1) // 这里删除元素后，m不用减1，是因为本身m就是最末尾的元素，删除它不会影响序号</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">arr.splice(i,1)</span><br><span class="line">    i--</span><br><span class="line">    &#125;else if(arr[i] !== null &amp;&amp; typeof arr[i] === &quot;object&quot;)&#123;</span><br><span class="line">    myObj.push(arr[i])</span><br><span class="line">    if (myObj.length&gt;1) &#123;</span><br><span class="line">    for (let k = 0; k &lt; myObj.length; k++) &#123;</span><br><span class="line">    for (let n = myObj.length-1; n &gt; k; n--) &#123;</span><br><span class="line">var objResult = eqObj(myObj[k],myObj[n])</span><br><span class="line">if (objResult) &#123;</span><br><span class="line">myObj.splice(n,1)</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  arr.splice(i,1)</span><br><span class="line">    i-- </span><br><span class="line">    &#125;else&#123;</span><br><span class="line">    if (arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])) &#123;</span><br><span class="line">    arr.splice(i,1)</span><br><span class="line">    i--</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    var result1 = arr.concat(myArr)</span><br><span class="line">    var result = result1.concat(myObj)</span><br><span class="line">    return result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function eqObj(a,b)&#123;</span><br><span class="line">if (Object.keys(a).length !== Object.keys(b).length) &#123; //属性不一样多 直接可以判断为二者不相等</span><br><span class="line">return false</span><br><span class="line">&#125;else&#123;</span><br><span class="line">for(var i in a)&#123;</span><br><span class="line">if (b.hasOwnProperty(i)) &#123;</span><br><span class="line">if (a[i] !== b[i]) &#123;</span><br><span class="line">if (typeof a[i] === &quot;object&quot; &amp;&amp; typeof b[i] === &quot;object&quot;) &#123;</span><br><span class="line">if (Array.isArray(a[i]) &amp;&amp; Array.isArray(b[i])) &#123;</span><br><span class="line">if(!(eqArr(a[i],b[i]))) return false</span><br><span class="line">&#125;else&#123;</span><br><span class="line">if(!(eqObj(a[i],b[i]))) return false</span><br><span class="line">&#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">return false</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">return false</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return true</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function eqArr(a,b)&#123;</span><br><span class="line">if (a.length !== b.length) &#123; //两数组长度不一样，直接判断为而这不相等</span><br><span class="line">return false</span><br><span class="line">&#125;else&#123;</span><br><span class="line">for (var i = 0; i &lt; a.length; i++) &#123;</span><br><span class="line">if (a[i] !== b[i]) &#123;</span><br><span class="line">if (typeof a[i] === &quot;object&quot; &amp;&amp; typeof b[i] === &quot;object&quot;) &#123;</span><br><span class="line">if (Array.isArray(a[i]) &amp;&amp; Array.isArray(b[i])) &#123;</span><br><span class="line">if(!(eqArr(a[i],b[i]))) return false</span><br><span class="line">&#125;else&#123;</span><br><span class="line">if(!(eqObj(a[i],b[i]))) return false</span><br><span class="line">&#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">return false</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">return true</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>上面的方法运用了递归。<br>注意在<code>eqArr()</code>函数（或<code>eqObj()</code>）的循环中不能有 <code>return true</code>的语句。因为这样会终止循环，导致<code>index = i</code>以后的元素都不能被比较。<br>有可能是我想得太复杂了，写得真的很多。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;数组去重&quot;&gt;&lt;a href=&quot;#数组去重&quot; class=&quot;headerlink&quot; title=&quot;数组去重&quot;&gt;&lt;/a&gt;数组去重&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://twentyshaw.github.io/categories/JavaScript/"/>
+    
+      <category term="刷题" scheme="https://twentyshaw.github.io/categories/%E5%88%B7%E9%A2%98/"/>
+    
+    
+      <category term="JS" scheme="https://twentyshaw.github.io/tags/JS/"/>
+    
+      <category term="代码题" scheme="https://twentyshaw.github.io/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/"/>
+    
+      <category term="数组" scheme="https://twentyshaw.github.io/tags/%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
   
   <entry>
     <title>JS代码题9</title>
